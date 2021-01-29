@@ -27,11 +27,15 @@
                             rotate: true};
     var confetti = new ConfettiGenerator(confettiSettings);
 
-    function celebrate() {
+    async function celebrate() {
         var button = document.getElementById("mot_button");
         button.innerText = "Yay! You did it!";
         audio.play();
         confetti.render();
+        await new Promise(r => setTimeout(r, 30000));        // Waiting for 30 seconds before we snap back to reality.
+        audio.pause()
+        button.innerText = "Now, get back to work!"
+        confetti.clear()
     }
 
 </script>
